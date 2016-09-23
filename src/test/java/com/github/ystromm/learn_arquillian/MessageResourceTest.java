@@ -20,27 +20,6 @@ import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class MessageResourceTest {
-    @Deployment
-    public static WebArchive createDeployment()
-    {
-        return ShrinkWrap
-                .create(WebArchive.class)
-                .addPackages(true, Filters.exclude(".*Test.*"),
-                        UserResource.class.getPackage())
-        .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
 
-    @Test
-    @RunAsClient
-    public void authenticateUser(
-            @ArquillianResteasyResource final WebTarget webTarget)
-    {
-        final Response response = webTarget
-                .path("/users/authenticate")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(new User(
-                        1l,
-                        "mypassword")));
-    }
 
 }
