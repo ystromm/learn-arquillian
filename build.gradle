@@ -1,3 +1,24 @@
+apply plugin: 'war'
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.jboss.resteasy:resteasy-jaxrs:2.2.1.GA'
+// main BOM for Arquillian
+    compile 'org.jboss.arquillian:arquillian-bom:1.1.11.Final'
+// JUnit container
+    testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.11.Final'
+// Chameleon (or any other specific container, e.g. JBoss, Wildfly etc.)
+    runtime group: 'org.jboss.arquillian.container', name: 'arquillian-jbossas-embedded-6', version: '1.0.0.CR3'
+// REST extensions
+    testCompile 'org.jboss.arquillian.extension:arquillian-rest-client-impl-jersey:1.0.0.Alpha4'
+
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.14'
 }
