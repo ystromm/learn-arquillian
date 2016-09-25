@@ -15,12 +15,11 @@ dependencies {
     // JUnit container
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.11.Final'
     // REST client
+// Chameleon (or any other specific container, e.g. JBoss, Wildfly etc.)
+    runtime group: 'org.wildfly', name: 'wildfly-arquillian-container-embedded', version: '8.2.1.Final'
+    runtime group: 'org.wildfly', name: 'wildfly-embedded', version: '9.0.2.Final'
     testCompile 'org.jboss.arquillian.extension:arquillian-rest-client-impl-jersey:1.0.0.Alpha4'
     testRuntime 'org.jboss.spec:jboss-javaee-7.0:1.0.3.Final'
-    // Chameleon (or any other specific container, e.g. JBoss, Wildfly etc.)
-    testRuntime 'org.jboss.arquillian.container:arquillian-weld-ee-embedded-1.1:1.0.0.CR9'
-    testRuntime 'org.jboss.weld:weld-core:2.3.5.Final'
-    testRuntime 'org.slf4j:slf4j-simple:1.6.4'
 }
 
 task wrapper(type: Wrapper) {
