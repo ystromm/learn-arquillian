@@ -1,4 +1,4 @@
-package com.github.ystromm.learn_arquillian;
+package com.github.ystromm.learn_arquillian.message;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

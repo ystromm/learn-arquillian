@@ -1,5 +1,7 @@
-package com.github.ystromm.learn_arquillian;
+package com.github.ystromm.learn_arquillian.message;
 
+import com.github.ystromm.learn_arquillian.user.User;
+import com.github.ystromm.learn_arquillian.user.UserResource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
@@ -15,8 +17,6 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class MessageResourceTest {

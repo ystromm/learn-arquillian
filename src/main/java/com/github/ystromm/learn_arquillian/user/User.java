@@ -1,4 +1,4 @@
-package com.github.ystromm.learn_arquillian;
+package com.github.ystromm.learn_arquillian.user;
 
 /**
  * Created by mac on 2016-09-22.

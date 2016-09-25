@@ -1,4 +1,4 @@
-package com.github.ystromm.learn_arquillian;
+package com.github.ystromm.learn_arquillian.user;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

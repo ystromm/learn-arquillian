@@ -1,4 +1,4 @@
-package com.github.ystromm.learn_arquillian;
+package com.github.ystromm.learn_arquillian.user;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -11,11 +11,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
+@RunAsClient
 @RunWith(Arquillian.class)
 public class UserResourceTest {
     @Deployment
@@ -28,14 +26,9 @@ public class UserResourceTest {
     }
 
     @Test
-    @RunAsClient
-    public void authenticateUser(
-            @ArquillianResteasyResource final WebTarget webTarget) {
-        final Response response = webTarget
-                .path("/users/authenticate")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(new User(
-                        1l,
-                        "mypassword")));
+    public void authenticate_should_return_401(@ArquillianResteasyResource WebTarget webTarget) {
+
+
     }
+
 }
