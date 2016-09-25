@@ -10,7 +10,6 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
 
-@BaseU
 public class UserResource {
 
     @Path("/user/authenticate")
