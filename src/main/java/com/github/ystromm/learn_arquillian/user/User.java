@@ -1,8 +1,6 @@
 package com.github.ystromm.learn_arquillian.user;
 
-/**
- * Created by mac on 2016-09-22.
- */
+
 public class User {
     private final long id;
     private final String name;

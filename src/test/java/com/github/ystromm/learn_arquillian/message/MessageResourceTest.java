@@ -2,6 +2,7 @@ package com.github.ystromm.learn_arquillian.message;
 
 import com.github.ystromm.learn_arquillian.user.User;
 import com.github.ystromm.learn_arquillian.user.UserResource;
+import org.hamcrest.MatcherAssert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
@@ -18,8 +19,27 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static org.hamcrest.Matchers.equalTo;
+
+@RunAsClient
 @RunWith(Arquillian.class)
 public class MessageResourceTest {
+    @Deployment
+    public static WebArchive createDeployment() {
+        return ShrinkWrap
+                .create(WebArchive.class)
+                .addPackages(true, Filters.exclude(".*Test.*"),
+                        MessageResource.class.getPackage())
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
 
+    @Test
+    public void get_should_return_message(@ArquillianResteasyResource WebTarget webTarget) {
+        final String s = webTarget.path("/message").request().get(String.class);
+    }
 
+    @Test
+    public void get_with_param_should_return_message(@ArquillianResteasyResource WebTarget webTarget) {
+        webTarget.path("/message/param").request().get(String.class);
+    }
 }
