@@ -10,7 +10,7 @@ configurations {
 }
 
 dependencies {
-    wildfly 'org.wildfly:wildfly-dist:8.2.0.Final'
+    wildfly 'org.wildfly:wildfly-dist:8.2.1.Final'
     compile 'org.jboss.resteasy:resteasy-jaxrs:2.2.1.GA'
     // testing tools
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -36,8 +36,9 @@ task jboss(type: Copy) {
 }
 
 test {
-    dependsOn jboss
+    // dependsOn jboss
     systemProperty 'jboss.home', file("${project.buildDir}/wildfly").toString()
+    systemProperty 'java.util.logging.manager', 'org.jboss.logmanager.LogManager'
 }
 
 task wrapper(type: Wrapper) {
