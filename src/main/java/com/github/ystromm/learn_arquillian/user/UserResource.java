@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
 
-@Path("/user")
+@Path("/")
 public class UserResource {
 
     @Path("/authenticate")
@@ -21,9 +21,10 @@ public class UserResource {
         return Response.status(401).build();
     }
 
+    @Path("/user")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     List<User> getUsers() {
-        return Collections.emptyList();
+        return Collections.singletonList(new User(1, "user"));
     }
 }

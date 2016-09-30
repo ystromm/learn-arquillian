@@ -17,11 +17,13 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import java.util.Collection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
 
 @RunAsClient
 @RunWith(Arquillian.class)
@@ -37,7 +39,8 @@ public class UserResourceTest {
 
     @Test
     public void authenticate_should_return_401(@ArquillianResteasyResource WebTarget webTarget) {
-        webTarget.path("/user/authenticate").request().post(Entity.entity(new User(1, "nameValue"), MediaType.APPLICATION_JSON_TYPE));
+        assertThat(webTarget.path("/authenticate").request().post(Entity.json(new User(1, "nameValue"))).getStatus(),
+        equalTo(Response.Status.UNAUTHORIZED.getStatusCode()));
     }
 
     @Test
