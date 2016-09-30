@@ -17,4 +17,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public static User user(long id, String name) {
+        return new User(id, name);
+    }
 }
