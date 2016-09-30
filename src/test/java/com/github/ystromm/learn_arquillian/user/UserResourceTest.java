@@ -39,6 +39,7 @@ public class UserResourceTest {
 
     @Test
     public void authenticate_should_return_401(@ArquillianResteasyResource WebTarget webTarget) {
+        System.out.println(webTarget.getUri().toString());
         assertThat(webTarget.path("/authenticate").request().post(Entity.json(new User(1, "nameValue"))).getStatus(),
         equalTo(Response.Status.UNAUTHORIZED.getStatusCode()));
     }

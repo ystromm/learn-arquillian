@@ -9,19 +9,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
-
-@Path("/")
+@Path("/user")
 public class UserResource {
 
-    @Path("/authenticate")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response authenticate(User user) {
-        return Response.status(401).build();
-    }
-
-    @Path("/user")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     List<User> getUsers() {
