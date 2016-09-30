@@ -15,17 +15,19 @@ import javax.ws.rs.NotFoundException;
 
 import static com.github.ystromm.learn_arquillian.user.User.user;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Arquillian.class)
 public class UserResourceImplTest {
-    public static final User KNATTE = user(1l, "knatte");
+    private static final User KNATTE = user(1l, "knatte");
+    private static final User FNATTE = user(2l, "fnatte");
+    private static final User TJATTE = user(3l, "tjatte");
 
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap
-                .create(WebArchive.class, "user.war")
+                .create(WebArchive.class)
                 .addClass(JaxRsActivator.class)
                 .addPackages(true, Filters.exclude(".*Test.*"),
                         UserResourceImpl.class.getPackage())
@@ -33,14 +35,14 @@ public class UserResourceImplTest {
     }
 
     @Inject
-    private UserResource userResource;
+    private UserResourceImpl userResource;
 
     @Test
-    public void getUsers_should_return_KNATTE() {
-        assertThat(userResource.getUsers(), contains(KNATTE));
+    public void getUsers_should_return_KNATTE_FNATTE_and_TJATTE() {
+        assertThat(userResource.getUsers(), containsInAnyOrder(KNATTE, FNATTE, TJATTE));
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void getUser_should_return_KNATTE() {
         assertThat(userResource.getUser(KNATTE.getId()), equalTo(KNATTE));
     }

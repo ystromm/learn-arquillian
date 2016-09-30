@@ -12,19 +12,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
 
 import static com.github.ystromm.learn_arquillian.user.User.user;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Arquillian.class)
 public class UserResourceTest {
 
     public static final User KNATTE = user(1l, "knatte");
+    public static final User FNATTE = user(2l, "fnatte");
+    public static final User TJATTE = user(3l, "tjatte");
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
@@ -37,19 +37,12 @@ public class UserResourceTest {
     }
 
     @Test
-    public void authenticate_should_return_401(@ArquillianResteasyResource WebTarget webTarget) {
-        System.out.println(webTarget.getUri().toString());
-        assertThat(webTarget.path("/authenticate").request().post(Entity.json(new User(1, "nameValue"))).getStatus(),
-                equalTo(Response.Status.UNAUTHORIZED.getStatusCode()));
+    public void get_users_should_return_KNATTE_FNATTE_TJATTE(@ArquillianResteasyResource UserResource userResource) {
+        assertThat(userResource.getUsers(), containsInAnyOrder(KNATTE, FNATTE, TJATTE));
     }
 
     @Test
-    public void get_users_should_return_empty(@ArquillianResteasyResource("/rest") UserResource userResource) {
-        assertThat(userResource.getUsers(), contains(KNATTE));
-    }
-
-    @Test
-    public void get_user_1_should_return_knatte(@ArquillianResteasyResource WebTarget webTarget) {
+    public void get_user_1_should_return_KNATTE(@ArquillianResteasyResource WebTarget webTarget) {
         assertThat(webTarget.path("/user/1").request().get(User.class), equalTo(KNATTE));
     }
 
