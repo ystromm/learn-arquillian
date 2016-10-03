@@ -50,6 +50,4 @@ public class UserResourceTest {
     public void get_user_4_should_return_not_found(@ArquillianResteasyResource WebTarget webTarget) {
         webTarget.path("/user/4").request().get(User.class);
     }
-
-
 }

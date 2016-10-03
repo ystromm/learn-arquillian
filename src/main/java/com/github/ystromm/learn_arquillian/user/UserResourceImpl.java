@@ -1,10 +1,9 @@
 package com.github.ystromm.learn_arquillian.user;
 
-import com.google.common.collect.ImmutableMap;
-
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,7 +14,14 @@ public class UserResourceImpl implements UserResource {
     public static final User KNATTE = user(1l, "knatte");
     public static final User FNATTE = user(2l, "fnatte");
     public static final User TJATTE = user(3l, "tjatte");
-    private final Map<Long, User> users = ImmutableMap.of(KNATTE.getId(), KNATTE, FNATTE.getId(), FNATTE, TJATTE.getId(), TJATTE);
+    private final Map<Long, User> users;
+
+    public UserResourceImpl() {
+        users = new HashMap<>();
+        users.put(KNATTE.getId(), KNATTE);
+        users.put(FNATTE.getId(), FNATTE);
+        users.put(TJATTE.getId(), TJATTE);
+    }
 
     @Override
     public Collection<User> getUsers() {

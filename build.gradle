@@ -15,6 +15,7 @@ configurations {
 dependencies {
     // wildfly-dist-8.1.0.Final.zip
     wildfly "org.wildfly:wildfly-dist:${wildflyVersion}@zip"
+    compileOnly "org.projectlombok:lombok:1.16.10"
     compile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.0.19.Final'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider
@@ -25,7 +26,9 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-integration:1.3'
     // main BOM for Arquillian
     testCompile 'org.jboss.arquillian:arquillian-bom:1.1.6.Final-wildfly-1'
-    // JUnit container
+    testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:3.0.0-alpha-1'
+
+            // JUnit container
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.11.Final'
     // REST client
     testCompile 'org.jboss.arquillian.extension:arquillian-rest-client-impl-jersey:1.0.0.Alpha4'
