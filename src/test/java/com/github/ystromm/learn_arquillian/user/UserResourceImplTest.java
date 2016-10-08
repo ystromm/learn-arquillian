@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Arquillian.class)
 public class UserResourceImplTest {
-    private static final User KNATTE = user(1l, "knatte");
+    static final User KNATTE = user(1l, "knatte");
     private static final User FNATTE = user(2l, "fnatte");
     private static final User TJATTE = user(3l, "tjatte");
 

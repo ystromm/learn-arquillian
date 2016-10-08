@@ -33,6 +33,7 @@ dependencies {
     // REST client
     testCompile 'org.jboss.arquillian.extension:arquillian-rest-client-impl-jersey:1.0.0.Alpha4'
     // Chameleon (or any other specific container, e.g. JBoss, Wildfly etc.)
+    testCompile 'io.rest-assured:rest-assured:3.0.1'
     testRuntime group: 'org.wildfly', name: 'wildfly-arquillian-container-embedded', version: '8.2.0.Final'
     testRuntime 'org.jboss.spec:jboss-javaee-7.0:1.0.3.Final'
 }
